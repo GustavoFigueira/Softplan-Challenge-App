@@ -14,7 +14,8 @@ class MainPage extends StatelessWidget {
       title: 'Softplan Desafio Técnico - Taxa de Juros',
       theme: getAppTheme(context),
       home: TaxaJurosPage(title: 'Softplan Desafio Técnico'),
-      initialRoute: '/',
+      debugShowCheckedModeBanner: false,
+      initialRoute: '/'
     );
   }
 }

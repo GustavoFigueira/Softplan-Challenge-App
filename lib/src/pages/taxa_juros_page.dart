@@ -10,49 +10,90 @@ class TaxaJurosPage extends StatefulWidget {
 }
 
 class _TaxaJurosPageState extends State<TaxaJurosPage> {
-  int _counter = 0;
+  var _scrollViewController =
+      new ScrollController(initialScrollOffset: 0, keepScrollOffset: false);
 
-  void _incrementCounter() {
-    setState(() {
-      _counter++;
-    });
+  @override
+  void initState() {
+    super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: RichText(
-          text: TextSpan(
-            style: TextStyle(fontSize: 18),
-            children: <TextSpan>[
-              TextSpan(
-                  text: widget.title,
-                  style: TextStyle(fontWeight: FontWeight.bold)),
-              TextSpan(text: '\nTaxa de Juros'),
-            ],
+        appBar: AppBar(
+          title: RichText(
+            text: TextSpan(
+              style: TextStyle(fontSize: 18),
+              children: <TextSpan>[
+                TextSpan(
+                    text: widget.title,
+                    style: TextStyle(fontWeight: FontWeight.bold)),
+                TextSpan(text: '\nTaxa de Juros'),
+              ],
+            ),
           ),
         ),
-      ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Text(
-              'You have pushed the button this many times:',
-            ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headline4,
-            ),
-          ],
-        ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: Icon(Icons.add),
-      ),
-    );
+        body: SingleChildScrollView(
+          padding: EdgeInsets.symmetric(horizontal: 20),
+            controller: _scrollViewController,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              mainAxisSize: MainAxisSize.max,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: <Widget>[
+                Container(
+                  width: MediaQuery.of(context).size.width,
+                  height: MediaQuery.of(context).size.height / 5,
+                  decoration: BoxDecoration(
+                      image: DecorationImage(
+                    image: AssetImage('assets/images/logo.png'),
+                    fit: BoxFit.fitWidth,
+                  )),
+                ),
+                Center(
+                    child: Divider(
+                  color: Colors.black.withOpacity(0.1),
+                  thickness: 2,
+                  indent: 20,
+                  endIndent: 20,
+                )),
+                Container(
+                  margin: EdgeInsets.symmetric(vertical: 40),
+                  child: Text('Primeira API',
+                      style:
+                          TextStyle(fontWeight: FontWeight.bold, fontSize: 24)),
+                ),
+                RaisedButton(
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: <Widget>[
+                      Text('Buscar Taxa de Juro'),
+                      Icon(Icons.search)
+                    ],
+                  ),
+                  color: Theme.of(context).primaryColor,
+                  textColor: Colors.white,
+                  onPressed: () => {},
+                ),
+                Container(
+                  margin: EdgeInsets.symmetric(vertical: 40),
+                  child: Text('Segunda API',
+                      style:
+                          TextStyle(fontWeight: FontWeight.bold, fontSize: 24)),
+                ),
+                RaisedButton(
+                  child: Text('Buscar Taxa de Juro'),
+                  color: Theme.of(context).primaryColor,
+                  textColor: Colors.white,
+                  onPressed: () => {},
+                ),
+                Container(
+                    margin: EdgeInsets.symmetric(vertical: 40),
+                    child: Text('Versão 0.0.1',
+                        style:
+                            TextStyle(fontSize: 12, color: Colors.grey[600])))
+              ],
+            )));
   }
 }
